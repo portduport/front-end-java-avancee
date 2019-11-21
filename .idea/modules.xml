@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/../eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../projetJavaAvancee/projetJavaAvancee.iml" filepath="$PROJECT_DIR$/../projetJavaAvancee/projetJavaAvancee.iml" />
       <module fileurl="file://$PROJECT_DIR$/restclient.iml" filepath="$PROJECT_DIR$/restclient.iml" />
     </modules>
   </component>

@@ -21,7 +21,7 @@ public class RestClientController {
     @Autowired
     RestTemplate newRestemplate;
 
-    static final String restApiServer = "http://localhost:8081/cars";
+    static final String restApiServer = "http://rest-api/cars";
 
     public List<Car> getCars(){
         List<Car> result = newRestemplate.getForObject(restApiServer, List.class);
