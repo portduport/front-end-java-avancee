@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Car List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/foundation.css}"/>
+</head>
+<body style="text-align: -webkit-center; margin-top: 40px">
+<div class="card" style="width: 450px">
+
+    <div class="card-divider">
+        <h1 th:utext="${car.brand}">...</h1>
+    </div>
+    <div class="card-section">
+        <h2 th:utext="${car.version}">..!..</h2>
+
+        <a href="../carList" class="button">CAR LIST</a>
+    </div>
+</div>
+</body>
+</html>

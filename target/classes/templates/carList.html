@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Car List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/foundation.css}"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body style="text-align: -webkit-center; margin-top: 40px">
+<div class="card" style="width: 850px">
+    <div class="card-divider">
+        <h1>Car List</h1>
+    </div>
+        <div>
+            <table border="1">
+                <tr>
+<!--                    <th>Id</th>-->
+                    <th>Brand</th>
+                    <th>Version</th>
+                    <th>Actions</th>
+                </tr>
+                <tr th:each="car : ${cars}">
+<!--                    <td style="text-align: center" th:utext="${car.id}">...</td>-->
+                    <td style="text-align: center" th:utext="${car.brand}">...</td>
+                    <td style="text-align: center" th:utext="${car.version}">...</td>
+                    <td style="text-align: center"><a th:href="@{'/carList/'+ ${car.id}}">Details </a> | <a href="">Edit </a> | <a class="delete" th:attr="data-link=@{/delete/{id}(id=${car.id})}">Delete</a></td>
+                </tr>
+            </table>
+            <a href="addCar">Add a Car</a>
+        </div>
+    </div>
+</body>
+<script>
+    $('.delete').on('click', function () {
+        var linkPath = $(this).data('link');
+        $.ajax({
+            type: 'delete',
+            url: linkPath,
+            success:function(){
+                location.reload();
+            }
+        });
+    })
+</script>
+</html>

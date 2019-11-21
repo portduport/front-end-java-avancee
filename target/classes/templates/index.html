@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/foundation.css}"/>
+
+</head>
+<body style="text-align: -webkit-center; margin-top: 40px">
+<div class="card" style="width: 450px">
+
+    <div class="card-divider">
+        <h1>Welcome</h1>
+    </div>
+    <div class="card-section">
+        <h2 th:utext="${message}">..!..</h2>
+
+
+        <a th:href="@{/carList}">Car List</a>
+    </div>
+</div>
+</body>
+
+</html>
