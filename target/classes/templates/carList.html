@@ -26,7 +26,7 @@
                     <td style="text-align: center"><a th:href="@{'/carList/'+ ${car.id}}">Details </a> | <a href="">Edit </a> | <a class="delete" th:attr="data-link=@{/delete/{id}(id=${car.id})}">Delete</a></td>
                 </tr>
             </table>
-            <a href="addCar">Add a Car</a>
+            <a href="addCar" class="button">Add a Car</a>
         </div>
     </div>
 </body>
