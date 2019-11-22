@@ -4,7 +4,6 @@ import com.campus2020.restclient.form.CarForm;
 import com.campus2020.restclient.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,7 +33,7 @@ public class MainController {
      * @param model
      * @return
      */
-    @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
 
         model.addAttribute("message", message);
@@ -46,7 +45,7 @@ public class MainController {
      * @param model
      * @return
      */
-    @RequestMapping(value = { "/carList" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/carList"}, method = RequestMethod.GET)
     public String carList(Model model) {
 
         model.addAttribute("cars", restClientController.getCars());
@@ -65,7 +64,7 @@ public class MainController {
      * @param model
      * @return
      */
-    @RequestMapping(value = { "/addCar" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/addCar"}, method = RequestMethod.GET)
     public String showAddCarPage(Model model) {
 
         CarForm carForm = new CarForm();
@@ -79,7 +78,7 @@ public class MainController {
      * @param carForm
      * @return
      */
-    @RequestMapping(value = { "/addCar" })
+    @RequestMapping(value = {"/addCar"})
     public String saveCar(Model model, //
                           @ModelAttribute("carForm") CarForm carForm, BindingResult result) {
         String brand = carForm.getBrand();
@@ -97,6 +96,48 @@ public class MainController {
         return "addCar";
     }
 
+
+    /**
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = {"/editCar/{id}"}, method = RequestMethod.GET)
+    public String showEditCarPage(@PathVariable Integer id, Model model) {
+        Car car = restClientController.getCar(id);
+        String brand = car.getBrand();
+        String version = car.getVersion();
+        CarForm carForm = new CarForm(brand, version);
+        model.addAttribute("carForm", carForm);
+        model.addAttribute("id", id);
+        model.addAttribute("errorMessage", errorMessage);
+        return "editCar";
+    }
+
+    /**
+     * @param model
+     * @param carForm
+     * @return
+     */
+    @RequestMapping(value = {"/editCar/{id}"}, method = RequestMethod.POST)
+    public String editCar(Model model, @PathVariable Integer id, //
+                          @ModelAttribute("carForm") CarForm carForm, BindingResult result) {
+        String brand = carForm.getBrand();
+        String version = carForm.getVersion();
+        Car editedCar = new Car();
+        if(brand != null && brand.length() > 0) {
+            editedCar.setBrand(brand);
+        }
+        if(version != null && version.length() > 0) {
+            editedCar.setVersion(version);
+        }
+
+        restClientController.editCar(id, editedCar);
+
+        return "redirect:/carList";
+
+    }
+
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String deleteCar(@PathVariable Integer id) {
         restClientController.deleteCar(id);
@@ -104,5 +145,4 @@ public class MainController {
     }
 
 
- 
 }

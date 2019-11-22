@@ -1,19 +1,16 @@
 package com.campus2020.restclient.controller;
 
-import com.campus2020.restclient.form.CarForm;
 import com.campus2020.restclient.model.Car;
-import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 
 @RestController
 public class RestClientController {
@@ -34,6 +31,14 @@ public class RestClientController {
         HttpEntity<Car> request =
                 new HttpEntity<Car>(newCar, headers);
         Car carAsJsonStr = newRestemplate.postForObject(restApiServer, request, Car.class);
+    }
+
+    public void editCar(Integer id, Car editedCar){
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Car> request =
+                new HttpEntity<Car>(editedCar, headers);
+        newRestemplate.exchange(restApiServer + "/" + id, HttpMethod.PUT, request, Car.class);
     }
 
     public Car getCar(Integer id){

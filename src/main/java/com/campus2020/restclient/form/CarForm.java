@@ -9,6 +9,13 @@ public class CarForm {
     private String brand;
     private String version;
 
+    public CarForm(){}
+
+    public CarForm(String brand, String version){
+        this.brand = brand;
+        this.version = version;
+    }
+
     public String getId() {
     	return id;
     }

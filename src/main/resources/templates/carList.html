@@ -23,10 +23,10 @@
 <!--                    <td style="text-align: center" th:utext="${car.id}">...</td>-->
                     <td style="text-align: center" th:utext="${car.brand}">...</td>
                     <td style="text-align: center" th:utext="${car.version}">...</td>
-                    <td style="text-align: center"><a th:href="@{'/carList/'+ ${car.id}}">Details </a> | <a href="">Edit </a> | <a class="delete" th:attr="data-link=@{/delete/{id}(id=${car.id})}">Delete</a></td>
+                    <td style="text-align: center"><a th:href="@{'/carList/'+ ${car.id}}">Details </a> | <a th:href="@{'/editCar/'+ ${car.id}}">Edit </a> | <a class="delete" th:attr="data-link=@{/delete/{id}(id=${car.id})}">Delete</a></td>
                 </tr>
             </table>
-            <a href="addCar" class="button">Add a Car</a>
+            <a href="carList" class="button">Reload</a>   <a href="addCar" class="button">Add a Car</a>
         </div>
     </div>
 </body>
